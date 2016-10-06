@@ -12,9 +12,11 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
-
     Route::get('/', function () {
-        return view('welcome');
+        return view('body');
     });
-
 });
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
