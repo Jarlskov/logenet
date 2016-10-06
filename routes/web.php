@@ -12,3 +12,5 @@
 Route::get('/', function () {
     return view('body');
 });
+
+Route::resource('events', 'EventController');
