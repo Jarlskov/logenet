@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
@@ -24,4 +27,21 @@ class Event extends Model
     protected $casts = array(
         'is_public' => 'boolean',
     );
+
+    /**
+     * Guarded fields.
+     *
+     * @var array
+     */
+    protected $guarded = array(
+        'id',
+    );
+
+    /**
+     * An event has a number of participants.
+     */
+    public function participants()
+    {
+        return $this->belongsToMany(User::class, 'events_participants');
+    }
 }

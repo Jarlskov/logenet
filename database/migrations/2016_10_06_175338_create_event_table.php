@@ -16,16 +16,13 @@ class CreateEventTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->string('title');
+            $table->string('location');
             $table->datetime('starttime');
             $table->datetime('endtime');
-            $table->string('location');
-            $table->integer('owner')->unsigned();
             $table->text('description');
-            $table->boolean('is_public')->default(false);
 
             $table->timestamps();
-
-            $table->foreign('owner')->references('id')->on('users');
         });
     }
 

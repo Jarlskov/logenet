@@ -1,9 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Event\Repository;
+use App\Event\Service;
 use App\Http\Requests;
+use App\Http\Requests\CreateEventRequest;
+use Date;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -11,11 +17,14 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
+     * @param Repository $eventRepository
+     *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, Repository $eventRepository)
     {
-        //
+        return view('events.index', ['events' => $eventRepository->getForUser($request->user())]);
     }
 
     /**
@@ -25,7 +34,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('events.create');
     }
 
     /**
@@ -34,9 +43,11 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateEventRequest $request, Service $eventService)
     {
-        //
+        $event = $eventService->create($request->user(), $request->title, $request->location, Date::parse($request->fromtime), Date::parse($request->totime), $request->get('description', ''));
+
+        return redirect('/events/' . $event->id);
     }
 
     /**

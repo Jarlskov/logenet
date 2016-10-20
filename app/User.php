@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Event;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -23,4 +24,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * A user may be participating in some events.
+     */
+    public function events()
+    {
+        return $this->belongsToMany(Event::class, 'events_participants');
+    }
 }

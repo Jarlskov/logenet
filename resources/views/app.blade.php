@@ -14,8 +14,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Punkt 1</a></li>
-                    <li><a href="/">Punkt 2</a></li>
+                    <li class="active"><a href="/events">Events</a></li>
                 </ul>
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">

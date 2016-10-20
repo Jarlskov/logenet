@@ -12,10 +12,13 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
+    mix.styles('./bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css');
     mix.sass('app.scss');
 });
 
 elixir(function(mix) {
+    mix.scripts('./bower_components/moment/min/moment.min.js');
+    mix.scripts('./bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js');
     mix.scripts('app.js');
 });
 
