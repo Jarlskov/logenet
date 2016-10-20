@@ -9,8 +9,12 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-Route::get('/', function () {
-    return view('body');
+
+
+Auth::routes();
+
+Route::group(['middleware' => 'auth'], function () {
+	Route::get('/', 'HomeController@index');
 });
 
 Route::resource('events', 'EventController');
