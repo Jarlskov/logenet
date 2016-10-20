@@ -10,7 +10,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url('/logenet') }}">Logenet</a>
+                <a class="navbar-brand" href="{{ url('/') }}">Logenet</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -45,7 +45,6 @@
                     @endif
                 </ul>
             </div>
-
         </div>
     </nav>
     <div id="logenet" class="container">
