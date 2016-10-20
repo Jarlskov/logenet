@@ -14,13 +14,7 @@
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
-
-	Route::get('/logenet', function(){
-		return view('body');
-	});
-
 	Route::get('/', 'HomeController@index');
-
 });
 
 Route::resource('events', 'EventController');
