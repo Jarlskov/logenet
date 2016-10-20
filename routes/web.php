@@ -23,3 +23,4 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
+Route::resource('events', 'EventController');
