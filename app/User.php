@@ -30,6 +30,6 @@ class User extends Authenticatable
      */
     public function events()
     {
-        return $this->belongsToMany(Event::class, 'events_participants');
+        return $this->belongsToMany(Event::class, 'events_participants')->withPivot('is_host');
     }
 }

@@ -12,12 +12,6 @@ class Service
 {
     /**
      * Create a new event.
-     *
-     * @param string $title
-     * @param string $location
-     * @param Date $starttime
-     * @param Date $endtime
-     * @param string $description
      */
     public function create(User $user, string $title, string $location, Date $starttime, Date $endtime, string $description) : Event
     {
@@ -32,5 +26,19 @@ class Service
         $user->events()->save($event, ['is_host' => true]);
 
         return $event;
+    }
+
+    /**
+     * Update an existing event.
+     */
+    public function update(Event $event, string $title, string $location, Date $starttime, Date $endtime, string $description)
+    {
+        $event->title = $title;
+        $event->location = $location;
+        $event->starttime = $starttime;
+        $event->endtime = $endtime;
+        $event->description = $description;
+
+        $event->save();
     }
 }

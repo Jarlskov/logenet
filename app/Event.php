@@ -42,6 +42,6 @@ class Event extends Model
      */
     public function participants()
     {
-        return $this->belongsToMany(User::class, 'events_participants');
+        return $this->belongsToMany(User::class, 'events_participants')->withPivot('is_host');
     }
 }

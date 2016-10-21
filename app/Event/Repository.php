@@ -20,6 +20,6 @@ class Repository
      */
     public function getForUser(User $user) : Collection
     {
-        return $user->events;
+        return $user->events()->orderBy('starttime')->orderBy('endtime')->get();
     }
 }

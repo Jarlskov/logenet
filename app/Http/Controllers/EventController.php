@@ -9,6 +9,7 @@ use App\Event\Repository;
 use App\Event\Service;
 use App\Http\Requests;
 use App\Http\Requests\CreateEventRequest;
+use App\Http\Requests\UpdateEventRequest;
 use Date;
 use Illuminate\Http\Request;
 
@@ -59,6 +60,8 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
+        $this->authorize('see', $event);
+
         return view('events.show', ['event' => $event]);
     }
 
@@ -71,6 +74,8 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
+        $this->authorize('edit', $event);
+
         return view('events.edit', ['event' => $event]);
     }
 
@@ -82,9 +87,13 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(UpdateEventRequest $request, Event $event, Service $eventService)
     {
-        //
+        $this->authorize('edit', $event);
+
+        $eventService->update($event, $request->title, $request->location, Date::parse($request->fromtime), Date::parse($request->totime), $request->description);
+
+        return redirect('/events/' . $event->id . '/edit');
     }
 
     /**
@@ -96,6 +105,8 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
+        $this->authorize('edit', $event);
+
         $event->destroy();
 
         return redirect('/events');
