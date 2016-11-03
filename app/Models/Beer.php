@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace App\Models;
 
 use App\Brewery;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
-class Country extends Model
+class Beer extends Model
 {
     /**
-     * A country has a number of breweries.
+     * A beer is made by a brewery.
      */
-    public function breweries() : Relation
+    public function brewery() : Relation
     {
-        return $this->hasMany(Brewery::class);
+        $this->belongsTo(Brewery::class);
     }
 }
