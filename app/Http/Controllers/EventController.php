@@ -25,7 +25,7 @@ class EventController extends Controller
      */
     public function index(Request $request, Repository $eventRepository)
     {
-        return view('events.index', ['events' => $eventRepository->getForUser($request->user())]);
+        return $this->render('events.index', ['events' => $eventRepository->getForUser($request->user())]);
     }
 
     /**
@@ -35,7 +35,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('events.create');
+        return $this->render('events.create');
     }
 
     /**
@@ -62,7 +62,7 @@ class EventController extends Controller
     {
         $this->authorize('see', $event);
 
-        return view('events.show', ['event' => $event]);
+        return $this->render('events.show', ['event' => $event]);
     }
 
     /**
@@ -76,7 +76,7 @@ class EventController extends Controller
     {
         $this->authorize('edit', $event);
 
-        return view('events.edit', ['event' => $event]);
+        return $this->render('events.edit', ['event' => $event]);
     }
 
     /**
@@ -92,6 +92,7 @@ class EventController extends Controller
         $this->authorize('edit', $event);
 
         $eventService->update($event, $request->title, $request->location, Date::parse($request->fromtime), Date::parse($request->totime), $request->description);
+        $this->addSuccessMessage('Event updated!');
 
         return redirect('/events/' . $event->id . '/edit');
     }

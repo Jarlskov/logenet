@@ -47,6 +47,7 @@
         </div>
     </nav>
     <div id="logenet" class="container">
+        @include('partials.messages')
         @yield('content')
     </div>
 @endsection
