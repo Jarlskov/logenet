@@ -21,4 +21,13 @@ $('document').ready(function() {
     $('.linked-row').click(function() {
         window.document.location = $(this).data('href');
     });
+
+    if ($('.event-form').length) {
+        $('input[type="file"]').fileinput({
+            initialPreview: [
+                '<img src="' + $(this).data('preview') + '">',
+            ],
+            showCaption: false
+        });
+    }
 });

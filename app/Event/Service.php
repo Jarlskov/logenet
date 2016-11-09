@@ -6,7 +6,9 @@ namespace App\Event;
 
 use App\Event;
 use App\User;
+
 use Date;
+use Illuminate\Http\UploadedFile;
 
 class Service
 {
@@ -39,6 +41,16 @@ class Service
         $event->endtime = $endtime;
         $event->description = $description;
 
+        $event->save();
+    }
+
+    /**
+     * Update the event image.
+     */
+    public function updateImage(Event $event, UploadedFile $image)
+    {
+        $path = $image->store('public/images/events');
+        $event->image = $path;
         $event->save();
     }
 }

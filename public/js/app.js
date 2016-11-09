@@ -21,6 +21,12 @@ $('document').ready(function() {
     $('.linked-row').click(function() {
         window.document.location = $(this).data('href');
     });
+
+    if ($('.event-form').length) {
+        $('input[type="file"]').fileinput({
+            showCaption: false
+        });
+    }
 });
 
 //# sourceMappingURL=app.js.map

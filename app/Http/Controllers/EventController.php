@@ -92,6 +92,16 @@ class EventController extends Controller
         $this->authorize('edit', $event);
 
         $eventService->update($event, $request->title, $request->location, Date::parse($request->fromtime), Date::parse($request->totime), $request->description);
+
+        if ($request->hasFile('image')) {
+            if (!$request->file('image')->isValid()) {
+                $this->addErrorMessage('Error uploading event image');
+
+                return redirect('/events/' . $event->id . '/edit');
+            }
+
+            $eventService->updateImage($event, $request->file('image'));
+        }
         $this->addSuccessMessage('Event updated!');
 
         return redirect('/events/' . $event->id . '/edit');

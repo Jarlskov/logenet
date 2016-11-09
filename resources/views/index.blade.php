@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ elixir('css/bootstrap-datetimepicker.min.css') }}">
+        <link rel="stylesheet" href="{{ elixir('css/fileinput.min.css') }}">
         <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,6 +26,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
         <script src="{{ elixir('js/moment.min.js') }}"></script>
         <script src="{{ elixir('js/bootstrap-datetimepicker.min.js') }}"></script>
+        <script src="{{ elixir('js/fileinput.min.js') }}"></script>
         <script src="{{ elixir('js/app.js') }}"></script>
     </body>
 </html>
