@@ -24,10 +24,7 @@ $('document').ready(function() {
 
     if ($('.event-form').length) {
         $('input[type="file"]').fileinput({
-            initialPreview: [
-                '<img src="' + $(this).data('preview') + '">',
-            ],
-            showCaption: false
+            showCaption: false,
         });
     }
 });

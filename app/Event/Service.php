@@ -9,9 +9,20 @@ use App\User;
 
 use Date;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Contracts\Filesystem\Factory as Storage;
 
 class Service
 {
+    /**
+     * File storage.
+     */
+    protected $storage;
+
+    public function __construct(Storage $storage)
+    {
+        $this->storage = $storage;
+    }
+
     /**
      * Create a new event.
      */
@@ -49,7 +60,10 @@ class Service
      */
     public function updateImage(Event $event, UploadedFile $image)
     {
-        $path = $image->store('public/images/events');
+        if ($event->image) {
+            $this->storage->disk('public')->delete($event->image);
+        }
+        $path = $image->store('images/events', 'public');
         $event->image = $path;
         $event->save();
     }

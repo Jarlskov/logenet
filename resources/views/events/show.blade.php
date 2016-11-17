@@ -7,4 +7,9 @@
         <a href="/events/{{ $event->id }}/edit">Edit</a>
     @endif
 </div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <img src="{{ asset('/storage/' . $event->image) }}">
+    </div>
+</div>
 @endsection

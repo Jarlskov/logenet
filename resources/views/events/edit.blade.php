@@ -35,7 +35,7 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="image">Select image</label>
                 <div class="col-sm-10">
-                    <input id="image" name="image" type="file" class="file-loading" data-preview="{{ asset('storage/' . $event->image) }}">
+                    <input id="image" name="image" type="file" class="file-loading" data-initial-preview="<img src='{{ asset('storage/' . $event->image) }}'>" data-show-upload="false">
                 </div>
             </div>
             <div class="form-group">
