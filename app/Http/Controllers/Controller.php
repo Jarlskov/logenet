@@ -45,7 +45,7 @@ class Controller extends BaseController
     /**
      * Render template.
      */
-    public function render($template, $data)
+    public function render($template, array $data = array())
     {
         $data += array(
             'messages' => array(),

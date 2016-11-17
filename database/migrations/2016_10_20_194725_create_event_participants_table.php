@@ -19,6 +19,7 @@ class CreateEventParticipantsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('event_id')->unsigned();
             $table->boolean('is_host')->default(false);
+            $table->boolean('is_attending')->default(false);
 
             $table->timestamps();
 

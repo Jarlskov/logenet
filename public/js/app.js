@@ -13,9 +13,6 @@ $('document').ready(function() {
         $('#fromtime').on("dp.change", function(e) {
             $('#totime').data("DateTimePicker").minDate(e.date);
         });
-        $('#totime').on("dp.change", function(e) {
-            $('#fromtime').data("DateTimePicker").maxDate(e.date);
-        });
     }
 
     $('.linked-row').click(function() {
@@ -24,7 +21,7 @@ $('document').ready(function() {
 
     if ($('.event-form').length) {
         $('input[type="file"]').fileinput({
-            showCaption: false
+            showCaption: false,
         });
     }
 });
