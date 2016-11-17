@@ -43,7 +43,7 @@ class Event extends Model
      */
     public function participants() : Relation
     {
-        return $this->belongsToMany(User::class, 'events_participants')->withPivot('is_host');
+        return $this->belongsToMany(User::class, 'events_participants')->wherePivot('is_attending', 1)->withPivot('is_host');
     }
 
     /**
@@ -52,5 +52,13 @@ class Event extends Model
     public function hosts() : Relation
     {
         return $this->belongsToMany(User::class, 'events_participants')->wherePivot('is_host', 1);
+    }
+
+    /**
+     * An event has invited users.
+     */
+    public function invites() : Relation
+    {
+        return $this->belongsToMany(User::class, 'events_participants')->wherePivot('is_attending', 0)->withPivot('is_host');
     }
 }

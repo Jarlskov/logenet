@@ -36,7 +36,7 @@ class Service
             'description' => $description,
         ]);
 
-        $user->events()->save($event, ['is_host' => true]);
+        $user->events()->save($event, ['is_host' => true, 'is_attending' => true]);
 
         return $event;
     }

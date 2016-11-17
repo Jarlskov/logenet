@@ -31,7 +31,11 @@ class EventPolicy
     {
         if ($event->is_public) {
             return true;
+        } elseif ($event->hosts()->find($user->id)) {
+            return true;
         } elseif ($event->participants()->find($user->id)) {
+            return true;
+        } elseif ($event->invites()->find($user->id)) {
             return true;
         }
 
@@ -45,7 +49,7 @@ class EventPolicy
      */
     public function edit(User $user, Event $event)
     {
-        if ($event->participants()->find($user->id)->pivot->is_host) {
+        if ($event->hosts()->find($user->id)) {
             return true;
         }
 
