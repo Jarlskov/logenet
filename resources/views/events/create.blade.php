@@ -19,13 +19,13 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-6">
-                        <div class="form-group label-floating">
+                        <div class="form-group label-static">
                             <label for="fromtime" class="control-label">{{ trans('events.start_time_label') }}</label>
                             <input name="fromtime" type="text" id="fromtime" class="form-control datepicker">
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6">
-                        <div class="form-group label-floating">
+                        <div class="form-group label-static">
                             <label for="totime" class="control-label">{{ trans('events.end_time_label') }}</label>
                             <input name="totime" id="totime" type="text" class="form-control datepicker">
                         </div>

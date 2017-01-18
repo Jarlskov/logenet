@@ -8,7 +8,7 @@ $('document').ready(function() {
     if ($('.datepicker').length) {
         $('.datepicker').each(function() {
             $(this).datetimepicker({
-                defaultDate: $(this).data('defaultDate')
+                defaultDate: $(this).data('defaultDate') ? $(this).data('defaultDate') : new Date()
             });
             $(this).datetimepicker().trigger('dp.change');
         });
