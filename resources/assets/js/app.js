@@ -2,6 +2,8 @@ new Vue({
     el: '#logenet'
 });
 
+$.material.init();
+
 $('document').ready(function() {
     if ($('.datepicker').length) {
         $('.datepicker').each(function() {
