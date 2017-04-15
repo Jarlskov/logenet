@@ -5,6 +5,9 @@
  */
 
 require('./bootstrap');
+require('bootstrap-datetimepicker/src/js/bootstrap-datetimepicker');
+require('moment');
+require('bootstrap-material-design/dist/js/material.min.js');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -22,7 +25,7 @@ new Vue({
     }
 });
 
-registerTimepickers: () => {
+function registerTimepickers() {
     if ($('.datepicker').length) {
         $('.datepicker').each(function() {
             $(this).datetimepicker({

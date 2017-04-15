@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="col-md-4">
-        <participant-list :participants="{{ $event->participants->toJson() }}"></participants-list>
+        <participant-list :event="{{ $event->toJson() }}"></participants-list>
     </div>
 </div>
 @endsection

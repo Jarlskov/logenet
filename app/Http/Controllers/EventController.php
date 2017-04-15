@@ -72,6 +72,10 @@ class EventController extends Controller
     {
         $this->authorize('see', $event);
 
+        $event->load([
+            'participants',
+        ]);
+
         return $this->render('events.show', ['event' => $event]);
     }
 
