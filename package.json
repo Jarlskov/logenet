@@ -19,8 +19,9 @@
     "vue": "^2.1.10"
   },
   "dependencies": {
-    "bootstrap-datetimepicker": "^0.0.7",
+    "bootstrap-fileinput": "^4.3.8",
     "bootstrap-material-design": "^0.5.10",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "moment": "^2.18.1"
   }
 }

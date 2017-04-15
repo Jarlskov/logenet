@@ -5,8 +5,9 @@
  */
 
 require('./bootstrap');
-require('bootstrap-datetimepicker/src/js/bootstrap-datetimepicker');
 require('moment');
+require('eonasdan-bootstrap-datetimepicker');
+require('bootstrap-fileinput');
 require('bootstrap-material-design/dist/js/material.min.js');
 
 /**

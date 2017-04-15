@@ -25,11 +25,17 @@
             <div class="form-group">
                 <label for="fromtime" class="col-sm-2 control-label">Start</label>
                 <div class="col-sm-4">
-                    <input name="fromtime" type="text" id="fromtime" class="form-control datepicker" data-default-date="{{ $event->starttime }}">
+                    <div class="input-group date datepicker">
+                        <input name="fromtime" type="text" id="fromtime" class="form-control" data-default-date="{{ $event->starttime }}">
+                        <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span>
+                    </div>
                 </div>
                 <label for="totime" class="col-sm-2 control-label">End</label>
                 <div class="col-sm-4">
-                    <input name="totime" id="totime" type="text" class="form-control datepicker" data-default-date="{{ $event->endtime }}">
+                    <div class="input-group date datepicker">
+                        <input name="totime" id="totime" type="text" class="form-control" data-default-date="{{ $event->endtime }}">
+                        <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
