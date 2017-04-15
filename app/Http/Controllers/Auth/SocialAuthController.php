@@ -19,7 +19,7 @@ class SocialAuthController extends Controller
     public function redirect(Socialite $socialLite)
     {
         return $socialLite->driver('facebook')->redirect();
-    }s
+    }
 
     /**
      * Callback function called when we receive response from facebook.
