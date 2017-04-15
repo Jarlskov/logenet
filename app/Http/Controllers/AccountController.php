@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class AccountController extends Controller
 {
-
-	public function index()
-	{
-		return view('home');
-	}
+    /**
+     * Index function renders home view
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        return view('home');
+    }
 }

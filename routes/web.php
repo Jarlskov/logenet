@@ -22,8 +22,8 @@ Route::group(['middleware' => 'auth'], function () {
 Route::resource('events', 'EventController');
 
 
-Route::get('/redirect', 'Auth\SocialAuthController@redirect');
-Route::get('/callback', 'Auth\SocialAuthController@callback');
+Route::get('/login/redirect', 'Auth\SocialAuthController@redirect');
+Route::get('/login/callback', 'Auth\SocialAuthController@callback');
 
 
 

@@ -62,7 +62,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <a href="redirect" style="width:275px;" class="btn btn-block btn-social btn-facebook btn-lg">
+                                <a href="login/redirect" style="width:275px;" class="btn btn-block btn-social btn-facebook btn-lg">
                                     <span class="fa fa-facebook"></span>
                                     Sign in with Facebook
                                 </a>

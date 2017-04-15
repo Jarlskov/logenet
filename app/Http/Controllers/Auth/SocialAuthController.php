@@ -4,23 +4,37 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Services\SocialAccountService;
-use Socialite;
- 
+use Illuminate\Contracts\Auth\Guard;
+use Laravel\Socialite\Contracts\Factory as Socialite;
+
 
 class SocialAuthController extends Controller
 {
-	public function redirect()
-	{
-		return Socialite::driver('facebook')->redirect();
-	}
+    /**
+     * Method to redirect to facebook if facebook login is chosen.
+     *
+     * @param Socialite $socialLite
+     * @return mixed
+     */
+    public function redirect(Socialite $socialLite)
+    {
+        return $socialLite->driver('facebook')->redirect();
+    }s
 
-	public function callback(SocialAccountService $service)
-	{
-		// when facebook call us a with token
-		$user = $service->createOrGetUser(Socialite::driver('facebook')->user());
+    /**
+     * Callback function called when we receive response from facebook.
+     *
+     * @param SocialAccountService $service
+     * @param Guard $auth
+     * @param Socialite $socialLite
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function callback(SocialAccountService $service, Guard $auth, Socialite $socialLite)
+    {
+        $user = $service->createOrGetUser($socialLite->driver('facebook')->user());
 
-		auth()->login($user,true);
+        $auth->login($user, true);
 
-		return redirect()->to('/account');
-	}
+        return redirect()->to('/account');
+    }
 }
