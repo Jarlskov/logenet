@@ -12,15 +12,17 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-//Vue.component('example', require('./components/Example.vue'));
+Vue.component('participant-list', require('./components/Events/ParticipantList.vue'));
 
 new Vue({
-    el: '#logenet'
+    el: '#logenet',
+    mounted() {
+        $.material.init();
+        registerTimepickers();
+    }
 });
 
-$.material.init();
-
-$('document').ready(function() {
+registerTimepickers: () => {
     if ($('.datepicker').length) {
         $('.datepicker').each(function() {
             $(this).datetimepicker({
@@ -42,4 +44,4 @@ $('document').ready(function() {
             showCaption: false,
         });
     }
-});
+}
