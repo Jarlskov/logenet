@@ -1,11 +1,11 @@
 <?php
 
 
-namespace App\Services;
+namespace App\SocialAccount;
 
 use Laravel\Socialite\Contracts\User as ProviderUser;
-use App\Models\SocialAccount;
-use App\Models\User;
+use App\SocialAccount;
+use App\User;
 
 class SocialAccountService
 {
