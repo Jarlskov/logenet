@@ -18,6 +18,7 @@
                     <img class="img-responsive img-rounded" src="{{ asset('/storage/' . $event->image) }}">
                 @endif
                 &nbsp;
+                {{ $event->description }}
             </div>
         </div>
     </div>
