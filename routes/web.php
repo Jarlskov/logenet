@@ -10,12 +10,15 @@
 |
 */
 
-
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/', 'HomeController@index');
+	Route::get('/account','AccountController@index');
 });
 
 Route::resource('events', 'EventController');
 Route::resource('/events/{Event}/participants', 'Event\ParticipantController');
+
+Route::get('/login/redirect', 'Auth\SocialAuthController@redirect');
+Route::get('/login/callback', 'Auth\SocialAuthController@callback');
