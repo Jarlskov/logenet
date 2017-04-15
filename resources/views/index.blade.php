@@ -11,8 +11,8 @@
 
         <title>{{ $title or 'yay' }}</title>
 
-        <link rel="stylesheet" href="{{ elixir('css/libraries.css') }}">
-        <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <link rel="stylesheet" href="{{ mix('css/all.css') }}">
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -24,7 +24,7 @@
         @yield('body')
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
-        <script src="{{ elixir('js/libraries.js') }}"></script>
-        <script src="{{ elixir('js/app.js') }}"></script>
+        <script src="{{ mix('js/app.js') }}"></script>
+        <script src="{{ mix('js/material.min.js') }}"></script>
     </body>
 </html>
