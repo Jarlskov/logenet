@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 class Event extends Model
 {
     /**
-     * Date fiels.
+     * Date fields.
      *
      * @var array
      */
@@ -39,6 +39,15 @@ class Event extends Model
     );
 
     /**
+     * Fields to add to json output.
+     *
+     * @var array
+     */
+    protected $appends = array(
+        'image_url',
+    );
+
+    /**
      * An event has a number of participants.
      */
     public function participants() : Relation
@@ -60,5 +69,13 @@ class Event extends Model
     public function invites() : Relation
     {
         return $this->belongsToMany(User::class, 'events_participants')->wherePivot('is_attending', 0)->withPivot('is_host');
+    }
+
+    /**
+     * Get the url of an image.
+     */
+    public function getImageUrlAttribute() : string
+    {
+        return $this->image ? asset('/storage/' . $this->image) : '';
     }
 }

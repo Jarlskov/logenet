@@ -8,8 +8,7 @@ use App\Event;
 use App\Event\Repository;
 use App\Event\Service;
 use App\Http\Requests;
-use App\Http\Requests\CreateEventRequest;
-use App\Http\Requests\UpdateEventRequest;
+use App\Http\Requests\EventRequest;
 use Date;
 use Illuminate\Http\Request;
 
@@ -44,9 +43,14 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateEventRequest $request, Service $eventService)
+    public function store(EventRequest $request, Service $eventService)
     {
-        $event = $eventService->create($request->user(), $request->title, $request->location, Date::parse($request->fromtime), Date::parse($request->totime), $request->get('description', ''));
+        $starttime = Date::parse($request->starttime);
+        $starttime->setTimezone(new \DateTimeZone('Europe/Copenhagen'));
+        $endtime = Date::parse($request->endtime);
+        $endtime->setTimezone(new \DateTimeZone('Europe/Copenhagen'));
+
+        return $eventService->create($request->user(), $request->title, $request->location, $starttime, $endtime, $request->get('description', ''));
 
         if ($request->hasFile('image')) {
             if (!$request->file('image')->isValid()) {
@@ -57,8 +61,6 @@ class EventController extends Controller
 
             $eventService->updateImage($event, $request->file('image'));
         }
-
-        return redirect('/events/' . $event->id);
     }
 
     /**
@@ -68,7 +70,7 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show(Request $request, Event $event)
     {
         $this->authorize('see', $event);
 
@@ -76,7 +78,7 @@ class EventController extends Controller
             'participants',
         ]);
 
-        return $this->render('events.show', ['event' => $event]);
+        return $this->render('events.show', ['event' => $event, 'user' => $request->user()]);
     }
 
     /**
@@ -101,11 +103,13 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEventRequest $request, Event $event, Service $eventService)
+    public function update(EventRequest $request, Event $event, Service $eventService)
     {
         $this->authorize('edit', $event);
 
         $eventService->update($event, $request->title, $request->location, Date::parse($request->fromtime), Date::parse($request->totime), $request->description);
+
+        return $event;
 
         if ($request->hasFile('image')) {
             if (!$request->file('image')->isValid()) {
@@ -116,9 +120,6 @@ class EventController extends Controller
 
             $eventService->updateImage($event, $request->file('image'));
         }
-        $this->addSuccessMessage('Event updated!');
-
-        return redirect('/events/' . $event->id . '/edit');
     }
 
     /**

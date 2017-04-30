@@ -5,8 +5,8 @@
  */
 
 require('./bootstrap');
-require('moment');
-require('eonasdan-bootstrap-datetimepicker');
+var moment = require('moment');
+require('moment-timezone');
 require('bootstrap-fileinput');
 require('bootstrap-material-design/dist/js/material.min.js');
 
@@ -16,36 +16,31 @@ require('bootstrap-material-design/dist/js/material.min.js');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('participant-list', require('./components/Events/ParticipantList.vue'));
+import EventInfo from './components/Events/EventInfo.vue';
+import EventForm from './components/Events/EventForm.vue';
+import EventList from './components/Events/EventList.vue';
+import myDatepicker from 'vue-datepicker';
+
+Vue.prototype.trans = window.trans;
 
 new Vue({
     el: '#logenet',
+
+    data: function() {
+        return {
+            event_bus: new Vue(),
+        }
+    },
+
     mounted() {
         $.material.init();
-        registerTimepickers();
+        moment.tz.setDefault('Europe/Copenhagen');
+    },
+
+    components: {
+        EventForm: EventForm,
+        EventInfo: EventInfo,
+        EventList: EventList,
+        'date-picker': myDatepicker,
     }
 });
-
-function registerTimepickers() {
-    if ($('.datepicker').length) {
-        $('.datepicker').each(function() {
-            $(this).datetimepicker({
-                defaultDate: $(this).data('defaultDate') ? $(this).data('defaultDate') : new Date()
-            });
-            $(this).datetimepicker().trigger('dp.change');
-        });
-        $('#fromtime').on("dp.change", function(e) {
-            $('#totime').data("DateTimePicker").minDate(e.date);
-        });
-    }
-
-    $('.linked-row').click(function() {
-        window.document.location = $(this).data('href');
-    });
-
-    if ($('.event-form').length) {
-        $('input[type="file"]').fileinput({
-            showCaption: false,
-        });
-    }
-}
