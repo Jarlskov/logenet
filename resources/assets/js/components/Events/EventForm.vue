@@ -13,8 +13,8 @@
         mounted: function() {
             this.resetForm();
             this.$parent.event_bus.$on('createEvent', this.display);
-            this.$parent.event_bus.$on('editEvent', (event) => {
-                this.event = event;
+            this.$parent.event_bus.$on('editEvent', (object) => {
+                this.event = $.extend({}, object);
                 this.display();
             });
         },

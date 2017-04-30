@@ -5,16 +5,18 @@ import ParticipantList from './ParticipantList.vue';
 export default {
     data: function() {
         return {
-
+            object: {},
         }
     },
 
     mounted: function() {
-        this.event.starttime = moment(this.event.starttime);
-        this.event.endtime = moment(this.event.endtime);
+        this.object.starttime = moment(this.object.starttime);
+        this.object.endtime = moment(this.object.endtime);
 
         this.$parent.event_bus.$on('eventEdited', (event) => {
-            this.event = event;
+            this.object = event;
+            this.object.starttime = moment(this.object.starttime);
+            this.object.endtime = moment(this.object.endtime);
         });
     },
 
@@ -30,7 +32,7 @@ export default {
 
     methods: {
         editEvent() {
-            this.$parent.event_bus.$emit('editEvent', this.event);
+            this.$parent.event_bus.$emit('editEvent', this.object);
         }
     },
 
@@ -43,10 +45,10 @@ export default {
 <template>
 <div>
     <div class="page-header">
-        <h1>{{ event.title }}</h1>
+        <h1>{{ object.title }}</h1>
         <a href="#" v-on:click.prevent="editEvent">Edit</a>
         <div>
-            {{ event.location }}
+            {{ object.location }}
         </div>
     </div>
     <div class="row">
@@ -56,14 +58,14 @@ export default {
                     Description
                 </div>
                 <div class="panel-body">
-                    <img class="img-responsive img-rounded" v-if="event.image_url" :src="event.image_url">
+                    <img class="img-responsive img-rounded" v-if="object.image_url" :src="object.image_url">
                     &nbsp;
-                    {{ event.description }}
+                    {{ object.description }}
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <participant-list :event="event"></participant-list>
+            <participant-list :event="object"></participant-list>
         </div>
     </div>
 </div>
